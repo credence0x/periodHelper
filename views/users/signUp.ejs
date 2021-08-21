@@ -1,0 +1,111 @@
+<div class="custom-form">
+    <br><br>
+    <h3 style="text-align: center;"> Sign up </h3>
+  
+    <form method="POST" action="create">
+      
+      
+    <% if (repopulate) { %>
+    <!-- Email -->
+    <div class="form-outline mb-4">
+  
+      <label class="form-label" for="form2Example1">Email address</label>
+      <input type="email"  name="email" class="form-control" value="<%= repopulate.email %>" required/>
+    </div>
+      <!-- First Name -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example1">First Name</label>
+        <input type="text" name="first" class="form-control" value="<%= repopulate.first %>" required/>
+      </div>
+      <!--Last name -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">Last Name</label>
+        <input type="text" name="last" class="form-control" value="<%= repopulate.last %>" required/>
+      </div>
+      <!-- Password input -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">Password</label>
+        <input type="password" name="password" value="<%= repopulate.last %>" class="form-control" required/>
+      </div>
+      <!-- Age -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">Age</label>
+        <input type="number" name="age" class="form-control" min="12" max="70" value="<%= repopulate.age %>" required/>
+      </div>
+      <!-- Days Period Last -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">Days Period Last</label>
+        <input type="number" name="daysPeriodLast" value="<%= repopulate.daysPeriodLast %>" min="1" max="10" class="form-control" placeholder="Days your period usually last e.g 5" required/>
+      </div>
+      <!-- Date of Last Period -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">When your last period ended</label>
+        <input type="date" name="lastPeriod" value="<%= repopulate.lastPeriod %>" class="form-control" required/>
+      </div>
+      <!-- Interval Between Periods -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">You usually see your period after how many days?</label>
+        <input type="number" name="interval" value="<%= repopulate.interval %>" min="15" max="50" class="form-control" required/>
+      </div>
+  
+    
+  
+      <% } else { %>
+  <!-- Email -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form2Example1">Email address</label>
+    <input type="email"  name="email" class="form-control" required/>
+  </div>
+    <!-- First Name -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example1">First Name</label>
+      <input type="text" name="first" class="form-control" required/>
+    </div>
+    <!--Last name -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example2">Last Name</label>
+      <input type="text" name="last" class="form-control" required/>
+    </div>
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example2">Password</label>
+      <input type="password" name="password" class="form-control" required/>
+    </div>
+    <!-- Age -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">Age</label>
+        <input type="number" name="age" min="12" max="70" class="form-control" required/>
+    </div>
+      <!-- Days Period Last -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">Days Period Last</label>
+        <input type="number" name="daysPeriodLast" min="1" max="10" class="form-control" placeholder="Days your period usually last e.g 5" required/>
+    </div>
+      <!-- Date of Last Period -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">When your last period ended</label>
+        <input type="date" name="lastPeriod" class="form-control" required/>
+    </div>
+      <!-- Interval Between Periods -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">You usually see your period after how many days?</label>
+        <input type="number" min="15" max="50" name="interval" class="form-control" required/>
+    </div>
+  
+     
+      <% } %>
+      <!-- 2 column grid layout for inline styling -->
+    
+  
+    <!-- Submit button -->
+    
+    <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
+   
+      <!-- Register buttons -->
+      <div class="text-center">
+        
+  
+  
+      </div>
+    </form>
+  </div>

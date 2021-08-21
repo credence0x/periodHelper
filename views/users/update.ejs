@@ -1,0 +1,102 @@
+<div class="custom-form">
+    <br><br>
+    <h3 style="text-align: center;"> Edit Profile </h3>
+  
+    <form method="POST" action="update">
+      
+      
+    <% if (repopulate) { %>
+    
+      <!-- First Name -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example1">First Name</label>
+        <input type="text" name="first" class="form-control" value="<%= repopulate.name.first %>" required/>
+      </div>
+      <!--Last name -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">Last Name</label>
+        <input type="text" name="last" class="form-control" value="<%= repopulate.name.last %>" required/>
+      </div>
+     
+      <!-- Age -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">Age</label>
+        <input type="number" name="age" min="12" max="70" class="form-control" value="<%= repopulate.age %>" required/>
+      </div>
+      <!-- Days Period Last -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">Days Period Last</label>
+        <input type="number" name="daysPeriodLast" min="1" max="10" value="<%= repopulate.daysPeriodLast %>" class="form-control" placeholder="Days your period usually last e.g 5" required/>
+      </div>
+      <!-- Date of Last Period -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">When your last period ended</label>
+        <input type="date" id="lastPeriod" name="lastPeriod" value="<%= repopulate.lastPeriod %>" class="form-control" required/>
+      </div>
+      <!-- Interval Between Periods -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">You usually see your period after how many days?</label>
+        <!-- only one of the repopulates will work depending on whether there's a query str -->
+        <input type="number" name="interval" min="15" max="50" value="<%= repopulate.intervalBetweenPeriods %><%= repopulate.interval %>" class="form-control" required/>
+      </div>
+  <script type="text/javascript">
+    function work() {
+        var date =  new Date("<%= repopulate.lastPeriod %>").toISOString().substring(0, 10),
+            field = document.querySelector('#lastPeriod');
+        field.value = date;
+    }
+    work()
+  </script>
+    
+  
+      <% } else { %>
+ 
+    <!-- First Name -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example1">First Name</label>
+      <input type="text" name="first" class="form-control" required/>
+    </div>
+    <!--Last name -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example2">Last Name</label>
+      <input type="text" name="last" class="form-control" required/>
+    </div>
+    
+    <!-- Age -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">Age</label>
+        <input type="number" name="age" min="12" max="70" class="form-control" required/>
+    </div>
+      <!-- Days Period Last -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">Days Period Last</label>
+        <input type="number" name="daysPeriodLast" min="1" max="10" class="form-control" placeholder="Days your period usually last e.g 5" required/>
+    </div>
+      <!-- Date of Last Period -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">When your last period ended</label>
+        <input type="date" name="lastPeriod" class="form-control" required/>
+    </div>
+      <!-- Interval Between Periods -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">You usually see your period after how many days?</label>
+        <input type="number" name="interval" min="15" max="50" class="form-control" required/>
+    </div>
+  
+     
+      <% } %>
+      <!-- 2 column grid layout for inline styling -->
+    
+  
+    <!-- Submit button -->
+    
+    <button type="submit" class="btn btn-primary btn-block mb-4">Update</button>
+   
+      <!-- Register buttons -->
+      <div class="text-center">
+        
+  
+  
+      </div>
+    </form>
+  </div>

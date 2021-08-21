@@ -1,0 +1,44 @@
+<div class="custom-form">
+    <br><br>
+    <h3 style="text-align: center;"> Log in </h3>
+      <form method="POST" action="/users/login/authenticate">
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form2Example1">Email address</label>
+            <input type="email" class="form-control" name="email"required/>
+          </div>
+          
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form2Example2">Password</label>
+              <input type="password" class="form-control" name="password" required/>
+            </div>
+        
+          <!-- 2 column grid layout for inline styling -->
+          <div class="row mb-4">
+            <div class="col d-flex justify-content-center">
+              <!-- Checkbox -->
+              <div class="form-check text-center">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="form2Example3"
+                  
+                />
+              </div>
+            </div>
+        
+            
+          </div>
+        
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+        
+          <!-- Register buttons -->
+          <div class="text-center">
+            <p>Not a member? <a href="/users/sign-up">Sign Up!</a></p>
+            
+          </div>
+        </form>
+      </div>

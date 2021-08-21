@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1">
+  <title>Period Helper</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<style>
+  html {
+    background: url('/images/woman.jpg') no-repeat center fixed;
+    background-size: cover;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+
+  .sign {
+    padding: 10px;
+    background-color: rgb(92, 92, 219);
+    color: white;
+    text-align: center;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    width: 50%;
+    margin: auto;
+
+  }
+
+  .outer {
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .middle {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .inner {
+    margin-left: auto;
+    margin-right: auto;
+
+  }
+
+  .intro {
+    background-color: white;
+    text-align: center;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 25px;
+    margin: 0 auto;
+    width: 25%;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    box-shadow: 5px 5px 5px lightgray;
+    opacity: 0.92;
+  }
+
+  @media screen and (max-width:500px) {
+
+    .intro {
+      width: 70%;
+    }
+
+  }
+  @media screen and (min-width:500px) and (max-width:800px) {
+
+.intro {
+  width: 50%;
+}
+
+}
+@media screen and (min-width:800px) and (max-width:1140px) {
+
+.intro {
+  width: 35%;
+}
+
+}
+</style>
+
+<body>
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <div class="intro">
+          <div style="margin-bottom: 50px;margin-top: 30px;">Heyy <br><br>Welcome to the Period Helper App</div>
+          <div style="margin-bottom: 50px;margin-top: 30px;color: grey;">
+            You don't have to keep track of your period manually anymore
+            <br><br>
+            <i>Have us do that for you!</i>
+          </div>
+
+          <a href="/users/sign-up"><div class="sign">Sign up here</div></a> 
+          <div style="margin: 20px;color: grey;">OR</div>
+
+          <a href="/users/login"><div class="sign">Log in</div></a> 
+          <br><br>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
