@@ -207,7 +207,7 @@ module.exports = {
 
             out = {
                 success: false,
-                message: "Username and last name did not match"
+                message: "E-mail and last name did not match"
             }
             if (user) {
 
