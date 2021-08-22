@@ -1,6 +1,6 @@
 <div class="custom-form">
     <br><br>
-    <h3 style="text-align: center;"> Log in </h3>
+    <h3 style="text-align: center;"> Log In </h3>
       <form method="POST" action="/users/login/authenticate">
           <!-- Email input -->
           <div class="form-outline mb-4">
@@ -19,13 +19,8 @@
             <div class="col d-flex justify-content-center">
               <!-- Checkbox -->
               <div class="form-check text-center">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="form2Example3"
-                  
-                />
+                <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+
               </div>
             </div>
         
@@ -33,11 +28,10 @@
           </div>
         
           <!-- Submit button -->
-          <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
         
           <!-- Register buttons -->
           <div class="text-center">
-            <p>Not a member? <a href="/users/sign-up">Sign Up!</a></p>
+            <p>Don't have an account ? <a href="/users/sign-up">Sign Up!</a></p>
             
           </div>
         </form>

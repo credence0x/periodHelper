@@ -3,47 +3,192 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Period Helper</title>
-    <!-- <link rel="shortcut icon" type="image/png" href="/images/icon.png" /> -->
+    <link rel='stylesheet' href='/stylesheets/style.css' />
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/style.css">
 
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 </head>
+<script>
+    $(document).ready(() => {
+        $(".flash").fadeOut(12000)
+    })
+</script>
+<style>
+    /* html {
+    background: url('/images/woman.jpg') no-repeat center fixed;
+    background-size: cover;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  } */
+    body {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        background-color: rgb(247, 247, 247);
+        /* background-color: rgb(247, 0, 0); */
 
-<body style="background-color: rgb(7, 7, 7)">
+        color: black;
+    }
 
-    <div>
-        <h3 style="text-align: center;color: white;"><b>Period Helper</b></h3>
-        
-    </div>
-    <div class="flashes">
+    a {
+        text-decoration: none;
+        color: cornflowerblue;
+    }
 
-        <% if (flashMessages) { %>
-            <% if (flashMessages.success) { %>
+    img {
+        display: block;
+        width: 90%;
+        max-height: 350px;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
 
-                <div class="flash success">
-                    <%= flashMessages.success %>
-                </div>
 
-                <% } else if (flashMessages.error) { %>
-                    <div class="flash error">
-                        <%= flashMessages.error %>
+    }
+
+    form {
+        width: 70%;
+        margin: auto;
+    }
+
+    #footer {
+        position: relative;
+        bottom: 0;
+        width: 100%;
+
+        background-color: black;
+    }
+
+    .sign {
+        padding: 10px;
+        background-color: rgb(92, 92, 219);
+        color: white;
+        text-align: center;
+        border-radius: 25px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        width: 20%;
+        margin: auto;
+
+    }
+
+    .outer {
+        display: table;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    .middle {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .inner {
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    .intro {
+        background-color: white;
+        text-align: center;
+        font-weight: bold;
+        padding: 20px;
+        border-radius: 25px;
+        margin: 0 auto;
+        width: 25%;
+        margin-top: 30px;
+        margin-bottom: 50px;
+        box-shadow: 5px 5px 5px lightgray;
+        opacity: 0.92;
+    }
+
+    .hello-there {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 500px
+    }
+
+    @media screen and (max-width:500px) {
+
+        .hello-there {
+
+            width: 90%
+        }
+
+    }
+
+    @media screen and (max-width:560px) {
+        .sign {
+
+            width: 120px
+        }
+    }
+
+    @media screen and (min-width:500px) and (max-width:800px) {
+
+        form {
+            width: 40%;
+            margin: auto;
+        }
+
+    }
+
+    @media screen and (min-width:800px) and (max-width:3040px) {
+
+        form {
+            width: 30%;
+            margin: auto;
+        }
+
+    }
+</style>
+
+<body>
+    <div style="width: 90%;margin:auto">
+        <br>
+
+        <div style="text-align: center;">
+
+            <h2>
+                <b>Period Helper</b>
+            </h2>
+        </div>
+        <div class="flashes">
+
+            <% if (flashMessages) { %>
+                <% if (flashMessages.success) { %>
+
+                    <div class="flash success">
+                        <%= flashMessages.success %>
                     </div>
-                    <% } %>
-                        <% } %>
-    </div>
-    
 
- 
+                    <% } else if (flashMessages.error) { %>
+                        <div class="flash error">
+                            <%= flashMessages.error %>
+                        </div>
+                        <% } %>
+                            <% } %>
+        </div>
     </div>
-    <div style="margin-bottom: 30px;"></div>
-    <div >
-        <%-body%>
-    </div>
+    <%-body%>
+        <img src="/images/hg3.jpg" style="position: relative;bottom: 0px;">
+        <br><br><br>
+        <footer id="footer">
+            <div style="color: rgb(223, 223, 223);text-align: center;margin-top: 20px;">
+                <br>Created by <a href="https://twitter.com/ojetokunlanre">Lanre</a>
+                <br>Email: <a href="mailto:lojetokun@gmail.com">lojetokun@gmail.com</a>
+
+                <br><br><a href="/users/login" style="color: rgb(223, 223, 223);"> Log in</a>
+                <br><a href="/users/sign-up" style="color: rgb(223, 223, 223);"> Sign up</a>
+                <br><br>
+            </div>
+        </footer>
 </body>
 
 </html>

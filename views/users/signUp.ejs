@@ -34,8 +34,8 @@
       </div>
       <!-- Days Period Last -->
       <div class="form-outline mb-4">
-        <label class="form-label" for="form2Example2">Days Period Last</label>
-        <input type="number" name="daysPeriodLast" value="<%= repopulate.daysPeriodLast %>" min="1" max="10" class="form-control" placeholder="Days your period usually last e.g 5" required/>
+        <label class="form-label" for="form2Example2">How long your period lasts ( in days )</label>
+        <input type="number" name="daysPeriodLast" value="<%= repopulate.daysPeriodLast %>" min="1" max="10" class="form-control" placeholder="e.g 5 " required/>
       </div>
       <!-- Date of Last Period -->
       <div class="form-outline mb-4">
@@ -44,8 +44,8 @@
       </div>
       <!-- Interval Between Periods -->
       <div class="form-outline mb-4">
-        <label class="form-label" for="form2Example2">You usually see your period after how many days?</label>
-        <input type="number" name="interval" value="<%= repopulate.interval %>" min="15" max="50" class="form-control" required/>
+        <label class="form-label" for="form2Example2">Usual length of days in between periods</label>
+        <input type="number" name="interval" value="<%= repopulate.interval %>" min="15" max="50" placeholder="e.g 5" class="form-control" required/>
       </div>
   
     
@@ -78,8 +78,8 @@
     </div>
       <!-- Days Period Last -->
     <div class="form-outline mb-4">
-        <label class="form-label" for="form2Example2">Days Period Last</label>
-        <input type="number" name="daysPeriodLast" min="1" max="10" class="form-control" placeholder="Days your period usually last e.g 5" required/>
+        <label class="form-label" for="form2Example2">How long your period lasts ( in days )</label>
+        <input type="number" name="daysPeriodLast" min="1" max="10" class="form-control" placeholder="e.g 5" required/>
     </div>
       <!-- Date of Last Period -->
     <div class="form-outline mb-4">
@@ -88,24 +88,24 @@
     </div>
       <!-- Interval Between Periods -->
     <div class="form-outline mb-4">
-        <label class="form-label" for="form2Example2">You usually see your period after how many days?</label>
-        <input type="number" min="15" max="50" name="interval" class="form-control" required/>
+        <label class="form-label" for="form2Example2">Usual length of days in between periods </label>
+        <input type="number" min="15" max="50" name="interval" placeholder="e.g 23" class="form-control" required/>
     </div>
   
      
       <% } %>
       <!-- 2 column grid layout for inline styling -->
     
-  
-    <!-- Submit button -->
+      <div class="row mb-4">
+        <div class="col d-flex justify-content-center">
+          <!-- Checkbox -->
+          <div class="form-check text-center">
+            <button type="submit" class="btn btn-primary btn-block mb-4">Sign Up</button>
+
+          </div>
+        </div>
     
-    <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
-   
-      <!-- Register buttons -->
-      <div class="text-center">
         
-  
-  
       </div>
     </form>
   </div>

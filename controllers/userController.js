@@ -89,8 +89,9 @@ module.exports = {
         console.log("redirect works")
 
         let redirectPath = res.locals.redirect;
-        if (redirectPath) res.redirect(redirectPath);
-        else next();
+        console.log(redirectPath)
+        if (redirectPath) { res.redirect(redirectPath) }
+        else { next() }
     },
     signUp: (req, res) => {
         let repopulate = req.query || false
@@ -163,7 +164,6 @@ module.exports = {
     update: (req, res, next) => {
         if (req.skip) { next() }
         let updatedUser = getUserUpdateParams(req.body);
-        // console.log(updatedUser)
         User.findOneAndUpdate({ _id: req.user._id }, { $set: updatedUser }, (error, user) => {
             if (user) {
                 req.flash("success", "Your profile was updated successfully");
@@ -182,7 +182,6 @@ module.exports = {
         } else {
             repopulate = req.user
         }
-        console.log(repopulate)
         res.render("users/update", { repopulate: repopulate })
     },
 
@@ -195,7 +194,7 @@ module.exports = {
 
 
         let user = req.user,
-            allowance = 1, // + or - 1 day
+            allowance = 0, // + or - 1 day
             lastPeriod = user.lastPeriod,
             daysPeriodLast = user.daysPeriodLast,
             interval = user.intervalBetweenPeriods,
@@ -209,50 +208,70 @@ module.exports = {
             let difference_in_time = todaysDate.getTime() - lastPeriod.getTime(),
                 difference_in_days = difference_in_time / (1000 * 3600 * 24);
             while ((todaysDate > lastPeriod) && (difference_in_days > interval)) {
+                // if within period
+                if ((todaysDate >= nextPeriodStart) && (todaysDate < nextPeriodEnd)) {
+                    // console.log("within")
+                    break
+                }
+                console.log(difference_in_days)
                 i += 1
                 lastPeriod = lastPeriod.addDays(interval + daysPeriodLast)
+                console.log(difference_in_days, lastPeriod)
                 difference_in_time = todaysDate.getTime() - lastPeriod.getTime();
                 difference_in_days = difference_in_time / (1000 * 3600 * 24);
+                nextPeriodStart = lastPeriod.addDays(interval - allowance);
+                nextPeriodEnd = nextPeriodStart.addDays(daysPeriodLast + allowance);
 
             }
-            console.log(i)
 
             user.lastPeriod = lastPeriod
             user.save()
+
         }
-        let info = "",
+        let diff = lastPeriod.addDays(interval).getTime() - todaysDate.getTime(),
+            diff_in_days = parseInt(diff / (1000 * 3600 * 24));
+        let info = [],
             menoMessage = "",
+            periodMessage = "",
             menopause = 50 - user.age,
             menoTrue = menopause > 0;
+        
+        let ten_days_diff = lastPeriod.addDays(10) > todaysDate
+
+       
+
 
         if (menoTrue) {
-            menoMessage = `You have about ${menopause} years till menopause. `
+            menoMessage = `You also have about ${menopause} years till menopause. `
 
         } else {
-            menoMessage = `You are rapidly approaching menopause. The pain will soon be over `
+            menoMessage = `You are also rapidly approaching menopause`
 
         }
         //if it is within the period range
         if ((todaysDate >= nextPeriodStart) && (todaysDate < nextPeriodEnd)) {
+            periodMessage = `Your period started on ${nextPeriodStart.toUTCString().slice(0, -12)} and should end on ${nextPeriodEnd.toUTCString().slice(0, -12)}`
             if (todaysDate < nextPeriodEnd - 2) {
-                info = "You should be on your period already. How's it going?"
+                info.push(" We hope it's going okay")
             } else if (todaysDate >= (nextPeriodEnd - 2)) {
-                info = "The blood bath should end anytime soon"
+                info.push("Your period should end anytime soon")
             }
 
-            //else if 10 days after last period
-        } else if (todaysDate <= lastPeriod.addDays(10)) {
-            info = "It's should be safe to have sex (y):)."
-            info += " Note that I will not be responsible if you eventually get pregnant"
+            //else if within 10 days after last period
+        } else if (ten_days_diff) {
+            periodMessage = `Your period starts on ${nextPeriodStart.toUTCString().slice(0, -12)}. `
+            periodMessage += `That is, in about ${diff_in_days} day(s)`
+            // info.push("It's should be safe to have sex since your period ended just a few days ago :)")
+            // info.push("Note that we will however not be liable to contribute to your child's upbringing if you eventually get pregnant")
 
-        } else if (todaysDate > lastPeriod.addDays(10)) {
-            let diff = lastPeriod.addDays(interval).getTime() - todaysDate.getTime(),
-                diff_in_days = parseInt(diff / (1000 * 3600 * 24));
-            info = `Next period should start in about ${diff_in_days} days`
+        } else if (!ten_days_diff) {
+            periodMessage = `Your next period starts on ${nextPeriodStart.toUTCString().slice(0, -12)}`
+            info.push(`That is, in about ${diff_in_days} day(s)`)
         }
 
 
         res.render("users/home", {
+            periodMessage: periodMessage,
             info: info,
             menoMessage: menoMessage
         })

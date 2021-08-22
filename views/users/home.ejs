@@ -1,11 +1,40 @@
-<div style="color:white;">
-    <%= info %>
-</div> 
-<div style="color:white;">
-    <%= menoMessage %>
-</div> 
-<div style="color: white;">
-<a href="/users/edit"> EDIT PROFILE</a>
-<a href="/users/logout"> Log out</a>
+<div style="color: white;text-align: center;">
+    <br>
+    | &emsp; <a href="/users/edit"> EDIT PROFILE</a>&emsp; | &emsp;
+    <a href="/users/logout"> LOG OUT</a> &emsp; |
 
+</div>
+<style>
+    .information{
+        padding:30px;
+        background-color: rgb(255, 255, 255);
+        width: 90%;
+        margin-left:auto;
+        margin-right:auto;
+        margin-top:3em;
+        margin-bottom:3em;
+        text-align: center;
+
+
+    }
+</style>
+<div class="information">
+<h5 style="text-align: center;color: blue;"> <b>DASHBOARD<b></h5>
+<br><br>
+    <%= periodMessage %>
+<br><br>
+    <div style="text-align: center;">
+        <% for (each in info){ %>
+        <%= info[each] %><br><br>
+        <%}%>
+    </div>
+    <br>
+    <div style="color: grey;text-align: center;">
+        <%= menoMessage %>
+    </div>
+    <br><br>
+    <div style="color: grey;text-align: center;">
+       <i>If the dates we're providing are incorrect, please update your profile to reflect the correct dates we asked for and we'll
+        take care of the rest. </i>
+    </div>
 </div>

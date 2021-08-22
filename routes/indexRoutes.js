@@ -10,7 +10,7 @@ router.get('/', function (req, res, next) {
     res.redirect("/users");
   }
 
-  res.render("index",{layout:false})
+  res.render("index")
 });
 
 module.exports = router;
