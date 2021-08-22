@@ -1,6 +1,7 @@
 const User = require("../models/user"),
     { check, validationResult } = require("express-validator"),
-    passport = require('passport');
+    passport = require('passport'),
+    tokenController = require("./tokenController");
 
 
 
@@ -18,7 +19,7 @@ getUserParams = body => {
         age: body.age,
     };
 };
-getUserUpdateParams = body => {
+getUserUpdateParams = (body) => {
     return {
         name: {
             first: body.first,
@@ -95,7 +96,10 @@ module.exports = {
     },
     signUp: (req, res) => {
         let repopulate = req.query || false
-        res.render("users/signUp", { repopulate: repopulate })
+        let maxDate = new Date().toISOString().substring(0, 10);
+
+        res.render("users/signUp", { repopulate: repopulate,
+            maxDate:maxDate })
     },
 
 
@@ -182,9 +186,88 @@ module.exports = {
         } else {
             repopulate = req.user
         }
-        res.render("users/update", { repopulate: repopulate })
+        let maxDate = new Date().toISOString().substring(0, 10);
+        res.render("users/update", { repopulate: repopulate,
+                                         maxDate:maxDate })
     },
 
+    resetPage: (req, res, next) => {
+
+        res.render("users/resetPassword")
+    },
+    checkReset: (req, res, next) => {
+        let query = req.query,
+            email = query.email || "",
+            lastName = query.last|| "",
+            out = {},
+            token = "";
+        User.find({ "email": email }, (error, user) => {
+            user = user[0]
+            console.log("e", error, "u", user)
+
+            out = {
+                success: false,
+                message: "Username and last name did not match"
+            }
+            if (user) {
+
+                if (user.name.last.toLowerCase() == lastName.toLowerCase()) {
+                    token = tokenController.createToken(user._id).token
+                    out = {
+                        success: true,
+                        message: "",
+                        url: `/users/new-password?token=${token}`
+                    }
+                }
+
+
+            }
+            console.log(out)
+            res.json(out)
+
+        })
+
+
+
+    },
+    newPasswordPage: (req, res) => {
+        let token = req.query.token || "fake"
+        let verify = tokenController.verifyToken(token);
+        if (!verify.authenticated){
+            res.json({success:false,
+            message: "Invalid token"})
+        }
+        res.render("users/newPassword")
+
+    },
+    newPasswordSubmit: (req, res,next) => {
+
+        
+        let token = req.query.token || "fake",
+            verify = tokenController.verifyToken(token);
+
+        if (verify.authenticated) {
+            let user_id = verify.id;
+            User.findById(user_id, (error, user) => {
+                if (user) {
+                    let password = req.body.password
+                    console.log(user_id, password)
+                    user.setPassword(password, () => {
+                        user.save()
+                        req.flash("success", "Password changed successfully. Log in to continue");
+                        res.locals.redirect = "/users/login"
+                        next()
+                    })
+                }
+                console.log("not supposed to happen")
+            })
+
+        } else {
+            req.flash("success", "Token is no longer valid. Please fill this again");
+            res.locals.redirect = "/users/reset-password"
+            next()
+        }
+    },
     home: (req, res) => {
         Date.prototype.addDays = function (days) {
             var date = new Date(this.valueOf());
@@ -235,10 +318,10 @@ module.exports = {
             periodMessage = "",
             menopause = 50 - user.age,
             menoTrue = menopause > 0;
-        
+
         let ten_days_diff = lastPeriod.addDays(10) > todaysDate
 
-       
+
 
 
         if (menoTrue) {

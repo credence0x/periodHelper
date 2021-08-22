@@ -6,9 +6,14 @@ const express = require('express'),
 
 router.post('/login/authenticate', userController.authenticate, userController.redirectView);
 router.post('/create', userController.validate(),userController.checkValidate, userController.create, userController.redirectView);
+router.post('/new-password', userController.newPasswordSubmit, userController.redirectView);
+
 router.get('/sign-up', userController.signUp);
 router.get('/login', userController.login);
 router.get('/logout', userController.logout, userController.redirectView);
+router.get('/reset/check', userController.checkReset);
+router.get('/reset-password', userController.resetPage);
+router.get('/new-password', userController.newPasswordPage);
 
 
 

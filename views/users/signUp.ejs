@@ -48,11 +48,16 @@
         <label class="form-label" for="form2Example2">When your last period ended</label>
         <input type="date" name="lastPeriod" id="my-date-input" value="<%= repopulate.lastPeriod %>"
           class="form-control" required />
+        <div class="periodInfo" >
+          If you're currently on your period, still put in the date your previous period ended.
+          <br>
+          If all information entered is correct, we will know that you should already be on your period
+        </div>
       </div>
       <!-- Interval Between Periods -->
       <div class="form-outline mb-4">
         <label class="form-label" for="form2Example2">Usual length of days in between periods</label>
-        <input type="number" name="interval" value="<%= repopulate.interval %>" min="15" max="50" placeholder="e.g 5"
+        <input type="number" name="interval" value="<%= repopulate.interval %>" min="15" max="50" placeholder="e.g 23"
           class="form-control" required />
       </div>
 
@@ -99,6 +104,11 @@
         <div class="form-outline mb-4">
           <label class="form-label" for="form2Example2">When your last period ended</label>
           <input type="date" name="lastPeriod" id="my-date-input" class="form-control" required />
+          <div class="periodInfo" >
+            If you're currently on your period, still put in the date your previous period ended.
+            <br>
+            If all information entered is correct, we will know that you should already be on your period
+          </div>
         </div>
         <!-- Interval Between Periods -->
         <div class="form-outline mb-4">
@@ -143,11 +153,10 @@
     validatePassword()
   }
 
-  var now = new Date(),
-    // minimum date the user can choose, in this case now and in the future
-    maxDate = now.toISOString().substring(0, 10);
   var rehide = function () {
     document.getElementById("rehide").style.visibility = "hidden"
   }
+  var maxDate = "<%=maxDate%>"
+  
   $('#my-date-input').prop('max', maxDate);
 </script>
