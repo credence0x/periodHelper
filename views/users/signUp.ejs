@@ -1,111 +1,153 @@
 <div class="custom-form">
-    <br><br>
-    <h3 style="text-align: center;"> Sign up </h3>
-  
-    <form method="POST" action="create">
-      
-      
+  <br><br>
+  <h3 style="text-align: center;"> Sign up </h3>
+
+  <form method="POST" action="create" id="signup">
+
+
     <% if (repopulate) { %>
-    <!-- Email -->
-    <div class="form-outline mb-4">
-  
-      <label class="form-label" for="form2Example1">Email address</label>
-      <input type="email"  name="email" class="form-control" value="<%= repopulate.email %>" required/>
-    </div>
+      <!-- Email -->
+      <div class="form-outline mb-4">
+
+        <label class="form-label" for="form2Example1">Email address</label>
+        <input type="email" name="email" class="form-control" value="<%= repopulate.email %>" required />
+      </div>
       <!-- First Name -->
       <div class="form-outline mb-4">
         <label class="form-label" for="form2Example1">First Name</label>
-        <input type="text" name="first" class="form-control" value="<%= repopulate.first %>" required/>
+        <input type="text" name="first" class="form-control" value="<%= repopulate.first %>" required />
       </div>
       <!--Last name -->
       <div class="form-outline mb-4">
         <label class="form-label" for="form2Example2">Last Name</label>
-        <input type="text" name="last" class="form-control" value="<%= repopulate.last %>" required/>
+        <input type="text" name="last" class="form-control" value="<%= repopulate.last %>" required />
       </div>
       <!-- Password input -->
-    <div class="form-outline mb-4">
+      <div class="form-outline mb-4">
         <label class="form-label" for="form2Example2">Password</label>
-        <input type="password" name="password" value="<%= repopulate.last %>" class="form-control" required/>
+        <input type="password" name="password" onclick="rehide()" id="p1" class="form-control" required />
+      </div>
+      <!-- Password input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">Confirm Password</label>
+        <input type="password" name="password-confirm" onclick="rehide()" id="p2" class="form-control" required />
       </div>
       <!-- Age -->
       <div class="form-outline mb-4">
         <label class="form-label" for="form2Example2">Age</label>
-        <input type="number" name="age" class="form-control" min="12" max="70" value="<%= repopulate.age %>" required/>
+        <input type="number" name="age" class="form-control" min="12" max="70" value="<%= repopulate.age %>" required />
       </div>
       <!-- Days Period Last -->
       <div class="form-outline mb-4">
         <label class="form-label" for="form2Example2">How long your period lasts ( in days )</label>
-        <input type="number" name="daysPeriodLast" value="<%= repopulate.daysPeriodLast %>" min="1" max="10" class="form-control" placeholder="e.g 5 " required/>
+        <input type="number" name="daysPeriodLast" value="<%= repopulate.daysPeriodLast %>" min="1" max="10"
+          class="form-control" placeholder="e.g 5 " required />
       </div>
       <!-- Date of Last Period -->
       <div class="form-outline mb-4">
         <label class="form-label" for="form2Example2">When your last period ended</label>
-        <input type="date" name="lastPeriod" value="<%= repopulate.lastPeriod %>" class="form-control" required/>
+        <input type="date" name="lastPeriod" id="my-date-input" value="<%= repopulate.lastPeriod %>"
+          class="form-control" required />
       </div>
       <!-- Interval Between Periods -->
       <div class="form-outline mb-4">
         <label class="form-label" for="form2Example2">Usual length of days in between periods</label>
-        <input type="number" name="interval" value="<%= repopulate.interval %>" min="15" max="50" placeholder="e.g 5" class="form-control" required/>
+        <input type="number" name="interval" value="<%= repopulate.interval %>" min="15" max="50" placeholder="e.g 5"
+          class="form-control" required />
       </div>
-  
-    
-  
+
+
+
       <% } else { %>
-  <!-- Email -->
-  <div class="form-outline mb-4">
-    <label class="form-label" for="form2Example1">Email address</label>
-    <input type="email"  name="email" class="form-control" required/>
-  </div>
-    <!-- First Name -->
-    <div class="form-outline mb-4">
-      <label class="form-label" for="form2Example1">First Name</label>
-      <input type="text" name="first" class="form-control" required/>
-    </div>
-    <!--Last name -->
-    <div class="form-outline mb-4">
-      <label class="form-label" for="form2Example2">Last Name</label>
-      <input type="text" name="last" class="form-control" required/>
-    </div>
-    <!-- Password input -->
-    <div class="form-outline mb-4">
-      <label class="form-label" for="form2Example2">Password</label>
-      <input type="password" name="password" class="form-control" required/>
-    </div>
-    <!-- Age -->
-    <div class="form-outline mb-4">
-        <label class="form-label" for="form2Example2">Age</label>
-        <input type="number" name="age" min="12" max="70" class="form-control" required/>
-    </div>
-      <!-- Days Period Last -->
-    <div class="form-outline mb-4">
-        <label class="form-label" for="form2Example2">How long your period lasts ( in days )</label>
-        <input type="number" name="daysPeriodLast" min="1" max="10" class="form-control" placeholder="e.g 5" required/>
-    </div>
-      <!-- Date of Last Period -->
-    <div class="form-outline mb-4">
-        <label class="form-label" for="form2Example2">When your last period ended</label>
-        <input type="date" name="lastPeriod" class="form-control" required/>
-    </div>
-      <!-- Interval Between Periods -->
-    <div class="form-outline mb-4">
-        <label class="form-label" for="form2Example2">Usual length of days in between periods </label>
-        <input type="number" min="15" max="50" name="interval" placeholder="e.g 23" class="form-control" required/>
-    </div>
-  
-     
-      <% } %>
-      <!-- 2 column grid layout for inline styling -->
-    
-      <div class="row mb-4">
-        <div class="col d-flex justify-content-center">
-          <!-- Checkbox -->
-          <div class="form-check text-center">
-            <button type="submit" class="btn btn-primary btn-block mb-4">Sign Up</button>
+        <!-- Email -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="form2Example1">Email address</label>
+          <input type="email" name="email" class="form-control" required />
+        </div>
+        <!-- First Name -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="form2Example1">First Name</label>
+          <input type="text" name="first" class="form-control" required />
+        </div>
+        <!--Last name -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="form2Example2">Last Name</label>
+          <input type="text" name="last" class="form-control" required />
+        </div>
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="form2Example2">Password</label>
+          <input type="password" name="password" onclick="rehide()" id="p1" class="form-control" required />
+        </div>
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="form2Example2">Confirm Password</label>
+          <input type="password" name="password-confirm" onclick="rehide()" id="p2" class="form-control" required />
+        </div>
+        <!-- Age -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="form2Example2">Age</label>
+          <input type="number" name="age" min="12" max="70" class="form-control" required />
+        </div>
+        <!-- Days Period Last -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="form2Example2">How long your period lasts ( in days )</label>
+          <input type="number" name="daysPeriodLast" min="1" max="10" class="form-control" placeholder="e.g 5"
+            required />
+        </div>
+        <!-- Date of Last Period -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="form2Example2">When your last period ended</label>
+          <input type="date" name="lastPeriod" id="my-date-input" class="form-control" required />
+        </div>
+        <!-- Interval Between Periods -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="form2Example2">Usual length of days in between periods </label>
+          <input type="number" min="15" max="50" name="interval" placeholder="e.g 23" class="form-control" required />
+        </div>
+
+
+        <% } %>
+          <!-- 2 column grid layout for inline styling -->
+          <div style="color: red;text-align: center;visibility: hidden;" id="rehide">Passwords don't match<br><br></bt></div>
+
+          <div class="row mb-4">
+            <div class="col d-flex justify-content-center">
+              <!-- Checkbox -->
+              <div class="form-check text-center">
+                <button type="submit" class="btn btn-primary btn-block mb-4">Sign Up</button>
+
+              </div>
+            </div>
+
 
           </div>
-        </div>
-    
-        
-      </div>
-    </form>
-  </div>
+  </form>
+</div>
+<script>
+  formm = document.getElementById("signup")
+  formm.onsubmit = function (event) {
+    var password = document.getElementById("p1"),
+      confirm_password = document.getElementById("p2");
+
+    function validatePassword() {
+
+      if (password.value != confirm_password.value) {
+        // document.getElementById("rehide").style.visibility = "visible"
+        $("#rehide").css("visibility", "visible");
+        $("#p2").select()
+        event.preventDefault()
+      }
+    }
+
+    validatePassword()
+  }
+
+  var now = new Date(),
+    // minimum date the user can choose, in this case now and in the future
+    maxDate = now.toISOString().substring(0, 10);
+  var rehide = function () {
+    document.getElementById("rehide").style.visibility = "hidden"
+  }
+  $('#my-date-input').prop('max', maxDate);
+</script>
